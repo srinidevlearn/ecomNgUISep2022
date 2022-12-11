@@ -25,3 +25,24 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Scope of class
+
+Learned how to create new Modules in angular 
+Created SharedModule using 
+`ng g m shared`
+
+
+Learned how to create new components inside the module
+Created new Hello World Component inside SharedModule
+traverse to shared folder which was created during ng g m command
+inside that folder to create HelloWorldComponent used
+`ng g c hello-world`
+
+
+Ensure generated component is decalred in declaration property inside the ngModule
+if need to use inside the other module add the same components to export as well
+
+
+I wish to reuse the components inside the AppModule so imported the SharedModule inside the AppModule and used app-hello-world selector inside app.components.ts
