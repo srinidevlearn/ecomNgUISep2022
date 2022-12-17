@@ -28,3 +28,21 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## Scope of class
+
+Router & Modules:
+router-outlet is used to render the view based browser url
+Lazy-loading - load modules on demand, no need to render module on app start.
+RouterModule - it is responsible for routing happening inside he nagular
+RouterModule.forRoot - it is placed because on app module or we can say root module level
+RouterModule.forChild -  it is placed on the lazy loaded modules for routing
+
+
+Components:
+interpolation
+Basic pipe - json, async
+
+Concepts:
+Observable vs Promise
+Lazy loading behaviour of promise, tested by using subscribe
+stream vs single source of truth
+how to prevent memory leak while using observable
