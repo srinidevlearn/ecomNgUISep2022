@@ -1,9 +1,42 @@
 <!-- one way data binding -->
 <!-- interpolation -->
+<!-- pipe in angular are used transform data in html -->
 
 
-
-<pre>
+<!-- <pre>
 
     {{  product$ | async | json }}
-</pre>
+</pre> -->
+
+
+<!-- dummy tag from angular ng-container -->
+
+
+<ng-container *ngIf="(product$ | async) as products">
+    <table class="table tbale-striped">
+        <thead>
+            <th>Sl.No</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Manufacturer</th>
+            <th>Price</th>
+            <th>Available</th>
+            <th>Action</th>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products;let index = index;let first = first; let last = last;let even = even;">
+                <td *ngIf="even">{{index+1}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.image}}</td>
+                <td>{{product.category}}</td>
+                <td>{{product.manufacturer}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.isAvailable}}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+</ng-container>

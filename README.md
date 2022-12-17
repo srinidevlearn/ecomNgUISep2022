@@ -41,6 +41,15 @@ Components:
 interpolation
 Basic pipe - json, async
 
+Directives:
+to extend the behaviour of the dom
+1) Attribute directives
+2) Structural directives - it will alter the dom behaviour
+      1) Examples
+         1) *ngIf
+         2) *ngFor
+         3) *ngSwitchCase
+
 Concepts:
 Observable vs Promise
 Lazy loading behaviour of promise, tested by using subscribe
