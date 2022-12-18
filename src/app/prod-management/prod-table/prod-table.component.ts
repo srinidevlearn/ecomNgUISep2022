@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { delay, from, of, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { delay, from, Observable, of, Subscription } from 'rxjs';
 import { IProductTable } from './product.interface';
 import { prod } from './product.mock';
 
@@ -10,16 +11,22 @@ import { prod } from './product.mock';
 })
 export class ProdTableComponent implements OnInit {
 
+  searchTerm:string = "";
 
-  product$ =  of(prod.data);
+  product$:Observable<IProductTable[]>=  of(prod.data);
 
-  constructor() { }
+  constructor(public router:Router) { }
 
   ngOnInit(): void {
 
   }
 
   ngOnDestroy(){
+  }
+
+  navigateTo(productId:string){
+    console.log(productId)
+    this.router.navigate(["management","prd", productId])
   }
 
 }

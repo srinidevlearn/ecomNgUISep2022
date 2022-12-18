@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HelloWorldComponent } from './hello-world/hello-world.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -9,7 +10,8 @@ import { HelloWorldComponent } from './hello-world/hello-world.component';
     HelloWorldComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   exports:[
     HelloWorldComponent

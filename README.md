@@ -29,29 +29,21 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Scope of class
 
-Router & Modules:
-router-outlet is used to render the view based browser url
-Lazy-loading - load modules on demand, no need to render module on app start.
-RouterModule - it is responsible for routing happening inside he nagular
-RouterModule.forRoot - it is placed because on app module or we can say root module level
-RouterModule.forChild -  it is placed on the lazy loaded modules for routing
+**HTTP Call**
+
+-> register HTTPCLIENTMODULE inside the required modules
+-> to make http call we have to ensure proper DI(Dependecny Injection) in required Service file(i.e) our class having injectable decorator
+-> http call is observable based so make sure that it is subscribe when you wish to perform http opertion
+-> memory leak needs to be taken care.
 
 
-Components:
-interpolation
-Basic pipe - json, async
+**Forms**
 
-Directives:
-to extend the behaviour of the dom
-1) Attribute directives
-2) Structural directives - it will alter the dom behaviour
-      1) Examples
-         1) *ngIf
-         2) *ngFor
-         3) *ngSwitchCase
+-> Template driven forms are achecived using **[(ngModel)]** and registering FORMSMODULE in required Modules
+-> reactive forms are acheived using **formBuilder.group({})**  and registering of REACTIVEFORMMODULE in required Forms fields
 
-Concepts:
-Observable vs Promise
-Lazy loading behaviour of promise, tested by using subscribe
-stream vs single source of truth
-how to prevent memory leak while using observable
+
+**Router**
+
+-> to fetch params data from router url, need to use **ActivatedRoute**.
+

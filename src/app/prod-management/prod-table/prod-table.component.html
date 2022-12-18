@@ -11,31 +11,43 @@
 
 <!-- dummy tag from angular ng-container -->
 
-
-<ng-container *ngIf="(product$ | async) as products">
-    <table class="table tbale-striped">
+<div class="input-group mb-3">
+    <div class="input-group-append">
+        <span class="input-group-text">Search</span>
+    </div>
+    <input type="search" class="form-control" placeholder="Product Name" [(ngModel)]="searchTerm">
+</div>
+<ng-container *ngIf="(product$ | async | prodSearch : searchTerm) as products">
+    <table class="table table-bordered text-center">
         <thead>
             <th>Sl.No</th>
-            <th>Name</th>
             <th>Image</th>
+            <th>Name</th>
             <th>Category</th>
-            <th>Manufacturer</th>
-            <th>Price</th>
+            <!-- <th>Manufacturer</th> -->
+            <!-- <th>Price</th> -->
             <th>Available</th>
             <th>Action</th>
 
         </thead>
         <tbody>
-            <tr *ngFor="let product of products;let index = index;let first = first; let last = last;let even = even;">
-                <td *ngIf="even">{{index+1}}</td>
-                <td>{{product.name}}</td>
-                <td>{{product.image}}</td>
-                <td>{{product.category}}</td>
-                <td>{{product.manufacturer}}</td>
-                <td>{{product.price}}</td>
-                <td>{{product.isAvailable}}</td>
+            <tr *ngFor="let product of products;let index = index;let first = first; let last = last;">
+                <td>{{index+1}}</td>
+                <td><img [src]="product.image" class="img-thumbnail rounded" width="100" height="100"></td>
+                <td class="text-start">{{product.name}}</td>
+                <td class="text-start">{{product.category}}</td>
+                <!-- <td class="text-start" >{{product.manufacturer}}</td> -->
+                <!-- <td class="text-start" >{{product.price}}</td> -->
+                <td class="text-start">{{product.isAvailable}}</td>
+                <td class>
+                    <div class="d-flex justify-content-between">
+                        <div><button type="button" class="btn"><i class="fa fa-eye"></i></button></div>
+                        <div><button type="button" class="btn"><i class="fa fa-pencil" (click)="navigateTo(product.id)"></i></button></div>
+                        <div><button type="button" class="btn"><i class="fa fa-trash"></i></button></div>
+                    </div>
+                </td>
             </tr>
-            
+
         </tbody>
     </table>
 
