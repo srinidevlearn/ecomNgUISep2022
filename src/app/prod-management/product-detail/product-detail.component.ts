@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, Subscription, takeUntil, tap } from 'rxjs';
+import { HotToastService } from '@ngneat/hot-toast';
+import { catchError, EMPTY, Subject, Subscription, takeUntil, tap } from 'rxjs';
 import { ApiService } from 'src/app/shared/service/prod-api.service';
 import { IProductTable } from '../prod-table/product.interface';
 
@@ -27,13 +28,18 @@ export class ProductDetailComponent implements OnInit {
 
   performOperation: 'add' | 'update' = 'update';
 
+  loading: boolean = false;
+
   destroy$ = new Subject<void>();
 
   constructor(
     public actRoute: ActivatedRoute,
     public api: ApiService,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    private toastService: HotToastService
   ) {
+    this.loading = true;
+    //tracking router event changes
     this.actRoute.params.pipe(takeUntil(this.destroy$)).subscribe((d) => {
       this.updateProductId(d);
     });
@@ -45,13 +51,15 @@ export class ProductDetailComponent implements OnInit {
     this.routerProductId = obj?.id ? obj.id : '';
     if (this.routerProductId.toLowerCase() === 'add') {
       this.performOperation = 'add';
+      this.loading = false;
+      this.productForm.patchValue({ ...this.productModel });
     } else {
       this.performOperation = 'update';
+      this.fetchProductRecord();
     }
   }
 
   ngOnInit(): void {
-    if (this.performOperation === 'update') this.fetchProductRecord();
   }
 
   private fetchProductRecord() {
@@ -60,24 +68,34 @@ export class ProductDetailComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((d) => {
         this.productModel = d?.data;
-        this.productForm.patchValue({...this.productModel})
+        this.productForm.patchValue({ ...this.productModel });
+        this.loading = false;
       });
-
   }
 
-
-  public add(){
-    console.log(this.productForm.value)
-
+  public add() {
+    console.log(this.productForm.value);
   }
 
-  public update(){
-    console.log(this.productForm.value)
+  public update() {
+    console.log(this.productForm.value);
+    this.api
+      .updateProduct({ ...this.productForm.value })
+      .pipe(catchError((e) => this.handleError(e)))
+      .subscribe((d) => {
+        this.toastService.success('Updated Successfully');
+      });
   }
-
 
   private addProductRecord() {
-    // this.api.getProductById(this.routerProductId).subscribe(console.log)
+    let temp = { ...this.productForm.value };
+    delete temp.id; 
+   
+  }
+
+  private handleError(e: any) {
+    this.toastService.error('OOPS !!! Could not update');
+    return EMPTY;
   }
 
   ngOnDestroy() {

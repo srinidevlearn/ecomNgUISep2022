@@ -9,17 +9,26 @@ const routes: Routes = [
     children: [
       {
         path: 'prd',
-        loadChildren: ()=>import('./prod-management/prod-management.module').then(
-          (m) => m.ProdManagementModule
-        ),
+        loadChildren: () =>
+          import('./prod-management/prod-management.module').then(
+            (m) => m.ProdManagementModule
+          ),
       },
+
+      //TODO :Work With Sample Data
       {
         path: 'user',
-        loadChildren: ()=>import('./user-management/user-management.module').then(
-          (m) => m.UserManagementModule
-        ),
+        loadChildren: () =>
+          import('./user-management/user-management.module').then(
+            (m) => m.UserManagementModule
+          ),
       },
     ],
+  },
+  {
+    path: 'shopping',
+    loadChildren: () =>
+      import('./shopping/shopping.module').then((m) => m.ShoppingModule),
   },
 ];
 

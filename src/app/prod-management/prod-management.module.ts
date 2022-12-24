@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { HotToastModule } from '@ngneat/hot-toast';
 const prodRoutes: Routes = [
   {
     path: '',
@@ -31,7 +32,12 @@ const prodRoutes: Routes = [
     RouterModule.forChild(prodRoutes),
     FormsModule,
     ReactiveFormsModule,
-  SharedModule
+    HotToastModule.forRoot({
+      reverseOrder: false,
+        position: 'bottom-right',
+      
+    }),
+    SharedModule,
   ],
 })
 export class ProdManagementModule {}

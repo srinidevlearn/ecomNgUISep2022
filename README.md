@@ -29,21 +29,22 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Scope of class
 
-**HTTP Call**
+## Input
 
--> register HTTPCLIENTMODULE inside the required modules
--> to make http call we have to ensure proper DI(Dependecny Injection) in required Service file(i.e) our class having injectable decorator
--> http call is observable based so make sure that it is subscribe when you wish to perform http opertion
--> memory leak needs to be taken care.
+## Output
 
-
-**Forms**
-
--> Template driven forms are achecived using **[(ngModel)]** and registering FORMSMODULE in required Modules
--> reactive forms are acheived using **formBuilder.group({})**  and registering of REACTIVEFORMMODULE in required Forms fields
+## EventEmitter
 
 
-**Router**
-
--> to fetch params data from router url, need to use **ActivatedRoute**.
-
+### Add new Product
+PseudoCode try and implement in appropriate position
+```js
+  let temp = { ...this.productForm.value };
+    delete temp.id;
+    this.api
+      .addNewProduct(temp)
+      .pipe(catchError((e) => this.handleError(e)))
+      .subscribe((d) => {
+        this.toastService.success('Product added succesfully');
+      });
+```

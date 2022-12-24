@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { ManagementComponent } from './management/management.component';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ManagementComponent } from './management/management.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HotToastModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

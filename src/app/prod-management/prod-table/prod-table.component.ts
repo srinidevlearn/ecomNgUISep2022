@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { delay, from, Observable, of, Subscription } from 'rxjs';
+import { HotToastService } from '@ngneat/hot-toast';
+import { catchError, delay, EMPTY, from, map, Observable, of, Subscription, tap } from 'rxjs';
+import { ApiService } from 'src/app/shared/service/prod-api.service';
 import { IProductTable } from './product.interface';
-import { prod } from './product.mock';
 
 @Component({
   selector: 'app-prod-table',
@@ -13,9 +14,12 @@ export class ProdTableComponent implements OnInit {
 
   searchTerm:string = "";
 
-  product$:Observable<IProductTable[]>=  of(prod.data);
+  loading: boolean= false;
+  product$:Observable<IProductTable[]>=  this.api.getAllProducts().pipe(catchError(this.handleError),tap(()=>{
+    this.toastService.success("Loaded successfully")
+  }),map(d=>d?.data));
 
-  constructor(public router:Router) { }
+  constructor(public router:Router,private toastService: HotToastService,private api:ApiService) { }
 
   ngOnInit(): void {
 
@@ -25,8 +29,17 @@ export class ProdTableComponent implements OnInit {
   }
 
   navigateTo(productId:string){
-    console.log(productId)
     this.router.navigate(["management","prd", productId])
   }
 
+
+  handleError(){
+    this.toastService.error("OOPS !!! Something went wrong please try again later")
+    return EMPTY;
+  }
+
+
+  deleteProduct(){
+    this.toastService.success("Mock Deleted happened successfully")
+  }
 }
