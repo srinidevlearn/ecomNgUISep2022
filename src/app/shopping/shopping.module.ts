@@ -26,6 +26,7 @@ const routes: Routes = [
     CartComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes)],
+  exports:[]
 })
 export class ShoppingModule {
   constructor() {

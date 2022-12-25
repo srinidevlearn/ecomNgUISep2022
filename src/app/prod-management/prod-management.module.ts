@@ -9,6 +9,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { ShoppingModule } from '../shopping/shopping.module';
 const prodRoutes: Routes = [
   {
     path: '',

@@ -1,0 +1,64 @@
+<div class="card border border-violet  mx-4" [ngClass]="productData?.isAvailable ? 'disabled' : 'shadow-violet'" style="width: 15rem;">
+    <img [src]="productData.image" class="card-img-top bg-light shadow-sm" [alt]="productData.name" height="150" />
+
+    <div class="card-body p-2 pt-3 pb-0">
+        <div class="d-flex justify-content-between">
+            <div class="m-0 p-0">
+                <h5 class="ps-0 ruppeCursive text-truncate  text-capitalize pointer" [title]="productData.name">
+                    {{productData.name}}</h5>
+                <div class="mt-0 ruppeCursive" style="font-size:10px;letter-spacing:1px;">
+                    {{productData.description}}
+                </div>
+
+            </div>
+            <div class="my-auto">
+
+            </div>
+        </div>
+        <p class="text-start">
+            <span class="badge badge-violet">
+                {{productData.category}}
+            </span>
+        </p>
+       
+        <div class="d-flex flex-row justify-content-between my-2">
+            <div>
+                <div class="text-secondary font-weight-bold">Price</div>
+                <div class="align-self-center">
+                    <i class="fas fa-rupee-sign mt-3 text-secondary"></i><span
+                        class="font-weight-normal ms-1 text-secondary" style="font-size:20px">{{productData?.price | currency:"INR"}}</span>
+                </div>
+            </div>
+            <ng-container *ngIf="defaultQty===0">
+
+                <div class="">
+                    <div class="mb-1 text-center text-secondary font-weight-bold">Quantity</div>
+                    <button type="button" class="btn-sm btn-primary rounded-pill border-0 p-1 px-1 rounded-0 bg-violet text-white"
+                        (click)="increaseQty()">
+                        <i class="fa fa-plus text-white"></i>
+                        Add Item
+                    </button>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="defaultQty > 0">
+
+                <div class="">
+                    <div class="mb-1 text-center text-secondary font-weight-bold">Quantity</div>
+                    <button type="button" class="btn-sm btn-primary border-0 p-1 px-1 rounded-0 bg-light-black"
+                        (click)="decreaseQty()">
+                        <i class="fa fa-minus text-secondary"></i>
+
+                    </button>
+
+                    <input type="number" readonly="readonly" class="border-0 small-width bg-transparent" step="1"
+                        min="1" max="5" [value]="defaultQty" />
+                    <button type="button" class="btn-sm btn-primary border-0 p-1 px-1 rounded-0 bg-light-black"
+                        (click)="increaseQty()">
+                        <i class="fa fa-plus text-secondary"></i>
+                    </button>
+
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

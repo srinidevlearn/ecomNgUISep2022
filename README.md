@@ -30,12 +30,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Scope of class
 
 ## Input
-
+decorator helps to get data inside the comeponents
 ## Output
-
+decorator responsible to send data outside the componets
 ## EventEmitter
+emitter helps to emit value from componets
 
+## to avoid memory leak
 
+take(),takeUntill(),takeWhile() etc...
 ### Add new Product
 PseudoCode try and implement in appropriate position
 ```js

@@ -29,3 +29,9 @@ export interface IAddNewProductTable{
     manufacturer?: string,
     price?: number
 }
+
+export interface IShoppingInfo extends IProductTable{
+    qty:number;
+}
+
+

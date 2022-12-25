@@ -31,4 +31,8 @@ export class ApiService {
   updateProduct(body:IUpdateProductTable){
     return this.http.put(this.baseUrl+'product/update',body)
   }
+
+  login(body:{email:string,password:string}){
+    return this.http.post(this.baseUrl+'auth/login',body)
+  }
 }

@@ -4,69 +4,113 @@
     </div>
 </div>
 
-<div class="d-flex justify-content-center" *ngIf="loading === false">
+<div class="container">
 
-    <div class="card w-50">
-        <div class="card-header d-flex bg-transparent justify-content-between">
-            <h2>Product Details</h2>
-            <div *ngIf="performOperation === 'update'">
-                <a routerLink="/management/prd/add" class="btn btn-primary">Add New Product</a>
-            </div>
-        </div>
-        <div class="card-body">
-            <form [formGroup]="productForm">
-
-
-                <div class="mb-2">
-                    <label class="form-label">Product Name :</label>
-                    <input type="text" formControlName="name" class="form-control">
-                </div>
-                <div class="mb-2">
-                    <label class="form-label">Product Image :</label>
-                    <input type="text" formControlName="image" class="form-control">
-                </div>
-                <div class="mb-2">
-                    <label class="form-label">Product Description :</label>
-                    <textarea class="form-control" formControlName="description"></textarea>
-                </div>
-
-                <div class="mb-2">
-                    <label class="form-label">Product Manufacturer :</label>
-                    <input type="text" class="form-control" formControlName="manufacturer">
-                </div>
-
-                <div class="mb-2">
-                    <label class="form-label">Product Price :</label>
-                    <input type="number" class="form-control" formControlName="price">
-                </div>
-                <div class="mb-2">
-                    <label class="form-label">Product Category :</label>
-                    <input type="text" class="form-control" formControlName="category">
-                </div>
-                <div class="mb-2">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
-                            formControlName="isAvailable">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">Product Availability</label>
+    <div class="row">
+        <div class="col-sm-12 col-md-8" *ngIf="loading === false">
+            <div class="card">
+                <div class="card-header d-flex bg-transparent justify-content-between">
+                    <h2>Product Details</h2>
+                    <div *ngIf="performOperation === 'update'">
+                        <a routerLink="/management/prd/add" class="btn btn-primary">Add New Product</a>
                     </div>
                 </div>
-            </form>
-        </div>
-        <div class="card-footer bg-transparent">
-
-            <div class="d-flex justify-content-between">
-                <div *ngIf="performOperation === 'update'"><button type="button" class="btn btn-primary"
-                        (click)="update()"><i class="fa fa-save"></i>
-                        Update</button></div>
-
-                <div *ngIf="performOperation === 'add'"><button type="button" class="btn btn-primary" (click)="add()"><i
-                            class="fa fa-save"></i>
-                        Add</button></div>
-
-                <div><button type="button" class="btn btn-secondary"><i class="fa fa-save"></i>
-                        Cancel</button></div>
+                <div class="card-body">
+                    <form [formGroup]="productForm">
+    
+    
+                        <div class="mb-2">
+                            <label class="form-label">Product Name :</label>
+                            <input type="text" formControlName="name" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Product Image :</label>
+                            <input type="text" formControlName="image" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Product Description :</label>
+                            <textarea class="form-control" formControlName="description"></textarea>
+                        </div>
+    
+                        <div class="mb-2">
+                            <label class="form-label">Product Manufacturer :</label>
+                            <input type="text" class="form-control" formControlName="manufacturer">
+                        </div>
+    
+                        <div class="mb-2">
+                            <label class="form-label">Product Price :</label>
+                            <input type="number" class="form-control" formControlName="price">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Product Category :</label>
+                            <input type="text" class="form-control" formControlName="category">
+                        </div>
+                        <div class="mb-2">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                                    formControlName="isAvailable">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Product Availability</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer bg-transparent">
+    
+                    <div class="d-flex justify-content-between">
+                        <div *ngIf="performOperation === 'update'"><button type="button" class="btn btn-primary"
+                                (click)="update()"><i class="fa fa-save"></i>
+                                Update</button></div>
+    
+                        <div *ngIf="performOperation === 'add'"><button type="button" class="btn btn-primary"
+                                (click)="add()"><i class="fa fa-save"></i>
+                                Add</button></div>
+    
+                        <div><button type="button" class="btn btn-secondary"><i class="fa fa-save"></i>
+                                Cancel</button></div>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="col-sm-12 col-md-4 align-self-center justify-content-between" *ngIf="performOperation === 'update'">
+            <div class="card border border-violet mx-4" [ngClass]="!productData?.isAvailable ? 'disabled' : '' " style="width: 15rem;">
+                <img [src]="productData.image" class="card-img-top bg-light shadow-sm" [alt]="productData.name"
+                    height="150" />
+    
+                <div class="card-body p-2 pt-3 pb-0">
+                    <div class="d-flex justify-content-between">
+                        <div class="m-0 p-0">
+                            <h5 class="ps-0 ruppeCursive text-truncate  text-capitalize pointer"
+                                [title]="productData.name">
+                                {{productData.name}}</h5>
+                            <div class="mt-0 ruppeCursive" style="font-size:10px;letter-spacing:1px;">
+                                {{productData.description}}
+                            </div>
+    
+                        </div>
+                        <div class="my-auto">
+    
+                        </div>
+                    </div>
+                    <p class="text-start">
+                        <span class="badge badge-violet">
+                            {{productData.category}}
+                        </span>
+                    </p>
+    
+                    <div class="d-flex flex-row justify-content-between my-2">
+                        <div>
+                            <div class="text-secondary font-weight-bold">Price</div>
+                            <div class="align-self-center">
+                                <i class="fas fa-rupee-sign mt-3 text-secondary"></i><span
+                                    class="font-weight-normal ms-1 text-secondary"
+                                    style="font-size:20px">{{productData?.price | currency:"INR"}}</span>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    
     </div>
-
 </div>

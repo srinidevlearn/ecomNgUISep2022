@@ -14,6 +14,7 @@ import { IProductTable } from '../prod-table/product.interface';
 export class ProductDetailComponent implements OnInit {
   routerProductId: string = '';
 
+
   productModel: IProductTable = {
     id: '',
     name: '',
@@ -32,6 +33,10 @@ export class ProductDetailComponent implements OnInit {
 
   destroy$ = new Subject<void>();
 
+  get productData(){
+    return this.productForm.value
+  }
+
   constructor(
     public actRoute: ActivatedRoute,
     public api: ApiService,
@@ -45,6 +50,7 @@ export class ProductDetailComponent implements OnInit {
     });
 
     this.productForm = this.fb.group({ ...this.productModel });
+    
   }
 
   private updateProductId(obj: any) {
@@ -81,9 +87,10 @@ export class ProductDetailComponent implements OnInit {
     console.log(this.productForm.value);
     this.api
       .updateProduct({ ...this.productForm.value })
-      .pipe(catchError((e) => this.handleError(e)))
+      .pipe(catchError((e) => this.handleError(e)),takeUntil(this.destroy$))
       .subscribe((d) => {
         this.toastService.success('Updated Successfully');
+        this.fetchProductRecord();
       });
   }
 

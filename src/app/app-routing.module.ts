@@ -30,6 +30,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./shopping/shopping.module').then((m) => m.ShoppingModule),
   },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./auth/auth.module').then((m) => m.AuthModule),
+  },
 ];
 
 @NgModule({
