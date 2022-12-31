@@ -5,15 +5,24 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ShoppingComponent } from './shopping/shopping.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
+import { CartResolver } from '../shared/service/cart.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: ShoppingComponent,
     children: [
-      { path: 'product', component: ProductComponent },
+      {
+        path: 'product',
+        component: ProductComponent,
+        resolve: { cartItems: CartResolver },
+      },
       // {path:'product/:id',component:SingleProductComponent}
-      { path: 'cart', component: CartComponent },
+      {
+        path: 'cart',
+        component: CartComponent,
+        resolve: { cartItems: CartResolver },
+      },
       { path: '', redirectTo: 'product' },
     ],
   },
@@ -26,7 +35,7 @@ const routes: Routes = [
     CartComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes)],
-  exports:[]
+  exports: [],
 })
 export class ShoppingModule {
   constructor() {

@@ -25,7 +25,7 @@
                 </a>
     
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="isInventoryManager">
                         <a class="nav-link" routerLinkActive="active" [routerLink]="['/management','prd']">Inventory</a>
                     </li>
                     <li class="nav-item">

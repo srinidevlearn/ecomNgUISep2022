@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ManagementComponent } from './management/management.component';
+import { RoleGuard } from './shared/role.guard';
 
 const routes: Routes = [
   {
     path: 'management',
+    canActivate:[RoleGuard],
     component: ManagementComponent,
     children: [
       {

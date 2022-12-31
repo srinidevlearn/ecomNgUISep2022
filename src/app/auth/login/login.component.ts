@@ -14,10 +14,10 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
   loginFormModel: { email: string; password: string } = {
-    // email: 'srini@gmail.com',
-    email:"srini2@gmail.com",
-    // password: '123SD',
-    password:"m38rmF$"
+    email: 'srini@gmail.com',
+    // email:"srini2@gmail.com", // for non-inventory
+    password: '123SD',
+    // password:"m38rmF$" // for non-inventory
   };
 
   constructor(public fb: FormBuilder, private api: ApiService,private jwtHelper:JwtService,private router:Router) {}

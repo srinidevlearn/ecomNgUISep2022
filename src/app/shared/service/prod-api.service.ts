@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {  IAddNewProductTable, IUpdateProductTable } from 'src/app/prod-management/prod-table/product.interface';
 
 @Injectable({
@@ -35,4 +35,19 @@ export class ApiService {
   login(body:{email:string,password:string}){
     return this.http.post(this.baseUrl+'auth/login',body)
   }
+
+  getUserCartDetails(userId:string){
+    return this.http.get(this.baseUrl+'cart/getUserCart/'+userId);
+  }
+
+
+  updateCartInfo(body:{[key:string]:any}){
+    return this.http.post(this.baseUrl+'cart/addToCart',body)
+  }
+
+  deleteCartInfo(cartId:string){
+    return this.http.delete(this.baseUrl+'cart/delete/'+cartId)
+  }
+
+  // https://vercel-learn.vercel.app/api/cart/getUserCart/62e086c0cbe8e33612c7957b
 }

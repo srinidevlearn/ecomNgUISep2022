@@ -32,6 +32,7 @@ export interface IAddNewProductTable{
 
 export interface IShoppingInfo extends IProductTable{
     qty:number;
+    cartId?:string;
 }
 
 
