@@ -1,1 +1,36 @@
-<p>cart works!</p>
+
+    <!-- style="height: 500px;overflow-y: auto;" -->
+    <div class="justify-content-between card border-0 shadow-sm px-5 d-flex flex-row align-items-center text-secondary" id="cart-nav">
+        <h2>Total</h2>
+        <h3>
+            <span>{{totalValue | currency:'INR'}}</span>
+            <span class="ms-3">
+                <button type="button" class="btn btn-violet">Place Order</button>
+            </span>
+        </h3>
+    </div>
+    <div class="container">
+    <div class="row" >
+        <ng-container *ngFor="let item of cartItems">
+            <div class="col-12">
+                <app-cart-card [cartDetails]="item"></app-cart-card>
+                </div>
+
+        </ng-container>
+        <!-- <div class="col-12">
+          
+
+                <app-cart-card></app-cart-card>
+            
+
+        </div>
+        <div class="col-12">
+          
+
+            <app-cart-card></app-cart-card>
+        
+
+    </div> -->
+    </div>
+
+</div>

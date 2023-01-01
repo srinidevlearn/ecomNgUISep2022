@@ -6,6 +6,7 @@ import { ShoppingComponent } from './shopping/shopping.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
 import { CartResolver } from '../shared/service/cart.resolver';
+import { CartCardComponent } from './cart/cart-card/cart-card.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
     ProductCardComponent,
     ShoppingComponent,
     CartComponent,
+    CartCardComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [],
